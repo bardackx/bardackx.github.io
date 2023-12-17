@@ -1,0 +1,90 @@
+/* INPUT */
+input {
+  padding: 8px;
+  border: solid 3px var(--note);
+  border-radius: 8px;
+  font-size: 16px;
+  height: 40px;
+  display: inline;
+  box-sizing: border-box;
+  flex-shrink: 1;
+  min-width: 0px;
+  margin: 0;
+} input:focus {
+  background-color: var(--paper);
+  border-color: var(--ink);
+  outline: none;
+} input.large {
+  font-size: 24px;
+  height: 48px;
+}
+
+/* BUTTON */
+button {
+  box-sizing: 24px;
+  border-width: 3px;
+  border-style: solid;
+  font-size: 18px;
+  display: block;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 16px;
+  min-height: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-color: var(--ink);
+  background-color: var(--ink);
+  color: var(--paper);
+  height: auto;
+}
+button:disabled {
+  cursor: default;
+  border-color: var(--note);
+  background-color: var(--note);
+  color: var(--ink-on-note);
+}
+button:focus {
+  outline: var(--primary) 2px solid;
+  outline-offset: -8px;
+}
+
+/* CHECKBOX */
+input[type="checkbox"],
+input[type="checkbox"]:checked:active
+{
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  appearance: none;
+  border: 3px solid var(--note);
+  outline: none;
+  cursor: pointer;
+}
+input[type="checkbox"]:active,
+input[type="checkbox"]:checked 
+{
+  background-color: var(--ink);
+  border-color: var(--ink);
+}
+input[type="checkbox"]:focus {
+  border-color: var(--ink);
+}
+input[type="checkbox"]:checked:focus {
+  outline: var(--paper) 2px solid;
+  outline-offset: -6px;
+}
+
+/* HR */
+hr {
+  background-color: var(--outline-on-note);
+  height: 2px;
+  width: 2px;
+  border: none;
+  margin: 0;
+} .col hr {
+  width: 100%;
+} .col hr.oversize {
+  padding: 0 8px 0 8px;
+  width: 100%;
+  margin-left: -8px;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Japanese Verbs</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="layout.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="defaults.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="my-style.css" />
+    <script src="main.js"></script>
+    <script src="components/MyChip.js"></script>
+  </head>
+  <body class="col ph8 pv16 g8">
+    <p id="instructions" class="txt center">
+      change to
+      <span class="black tag">short</span>
+      <span class="black tag">non-past</span>
+      <span class="black tag">negative</span>
+    </p>
+
+    <div class="col g24 pv16">
+      <div id="verb" class="row center">
+        <my-chip main="食" alt="た"></my-chip>
+        <my-chip main="べ"></my-chip>
+        <my-chip main="る"></my-chip>
+      </div>
+    </div>
+
+    <form class="row g8" onsubmit="event.preventDefault(); test()">
+      <input class="f1 large" value="直ない" autofocus />
+      <button class="hc" disabled>Ok</button>
+    </form>
+
+    <div class="row g8 center">
+      <button class="nc">Irregular</button>
+      <button class="nc">Godan</button>
+      <button class="hc">Ichidan</button>
+    </div>
+
+    <div class="solid col note p8 r4">
+      <p>
+        1. Find the verb stem by removing the trailing
+        <span class="tag">る</span>
+      </p>
+      <p>2. Do</p>
+      <p>3. Do</p>
+    </div>
+
+    <!-- wrong stem, right past-tense (and maybe form) -->
+    <div class="solid col note p8 r4">
+      <p>
+        <span class="tag">直ない</span> is the right tense, but
+        <span class="tag">直る</span> is a different verb. The short non-past
+        negative for <span class="dark tag">食べる</span> is
+        <span class="black tag">食べない</span>.
+      </p>
+    </div>
+
+    <!-- get past tense from present tense -->
+    <div class="col solid note p8 r4 g8 hide-overflow">
+      <p class="black solid oversize p8">Ichidan present tense → past tense</p>
+      <p>
+        Get the stem by removing the trailing <span class="tag">る</span> from the present tense:
+        <span style="display: inline-flex; gap: 4px; height: 20px; line-height: 20px;">
+          <span class="dark tag">食べ<span class="slash">る</span></span> → <span class="tag">食べ</span>
+        </span>
+        , then add <span class="black tag">ない</span> at the end of the stem:
+      </p>
+      <hr class="oversize"/>
+      <p style="text-align: right;">
+        <span style="display: inline-flex; gap: 4px; height: 20px; line-height: 20px;">
+          <span class="dark tag">食べ<span class="slash">る</span></span> + 
+          <span class="black tag">ない</span> → 
+          <span class="black tag">食べない</span>
+        </span>
+      </p>
+    </div>
+
+  <div class="row end">
+    <button>Reset</button>
+  </div>
+
+    <hr />
+
+    <div class="row center2 g8">
+      <input id="hand-holding" type="checkbox" />
+      <label for="hand-holding">Hand holding</label>
+    </div>
+
+    <script>
+      reset();
+    </script>
+  </body>
+</html>

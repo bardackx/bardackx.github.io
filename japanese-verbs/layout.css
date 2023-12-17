@@ -1,0 +1,79 @@
+/* column */
+.col {
+  display: flex;
+  flex-flow: column;
+}
+.col.center {
+  align-items: center;
+}
+
+/* row */
+.row {
+  display: flex;
+  flex-flow: row;
+}
+.row.center {
+  justify-content: center;
+}
+.row.center2 {
+  align-items: center;
+}
+.row.end {
+  justify-content: end;
+}
+
+/* margin */
+.mt8 {
+  margin-top: 8px;
+}
+
+/* padding */
+.p8 {
+  padding: 8px;
+  --padding: 8px;
+}
+.p24 {
+  padding: 24px;
+  --padding: 24px;
+}
+.ph8 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.pv16 {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* gap */
+.g8 {
+  gap: 8px;
+}
+.g24 {
+  gap: 24px;
+}
+
+/* flex */
+.f1 {
+  flex: 1;
+}
+
+/* border-radius */
+.r4 {
+  border-radius: 4px;
+}
+
+/* text */
+p, .txt {
+  line-height: 24px;
+  min-height: 24px;
+  font-size: 16px;
+  margin: 0;
+}
+p.center, .txt.center {
+  text-align: center;
+}
+p.large, .txt.large {
+  font-size: 48px;
+  line-height: 48px;
+}

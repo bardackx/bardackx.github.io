@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      --c1: hsl(0deg 0% 11%); /* ink */
+      
+      --c2: hsl(0deg 0% 30%); /* ink on note, button on ink */
+      --c3: hsl(0deg 0% 66%); /* outline on note */
+      --c4: hsl(0deg 0% 88%); /* note */
+
+      --c5: hsl(0deg 0% 100%); /* paper */
+
+    }
+    body {
+      background-color: var(--c5);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 24px;
+      font-size: 16px;
+      display: flex;
+      flex-flow: column;
+      gap: 8px;
+    }
+    .col {
+      display: flex;
+      flex-flow: column;
+      gap: 16px;
+    }
+    .row {
+      display: flex;
+      flex-flow: row;
+      gap: 16px;
+    }
+
+    /* ===================================================================== */
+    /* SURFACE */
+
+    .solid {
+      padding: 14px;
+      border: solid 2px cyan;
+    }
+    .hc.solid {
+      border-radius: 8px;
+      background-color: var(--c1);
+      border-color: var(--c1);
+    }
+    .lc.solid {
+      border-radius: 8px;
+      background-color: var(--c4);
+      border-color: var(--c4);
+    }
+    .nc.solid {
+      border-radius: 8px;
+      background-color: var(--c5);
+      border-color: var(--c5);
+    }
+    
+    /* HI */
+    .hc.solid .hc.solid {
+      background-color: var(--c5);
+      border-color: var(--c5);
+    }
+    .lc.solid .hc.solid {
+      background-color: var(--c1);
+      border-color: var(--c1);
+    }
+    .nc.solid .hc.solid {
+      background-color: var(--c1);
+      border-color: var(--c1);
+    }
+
+    /* LOW */
+    .hc.solid .lc.solid {
+      background-color: var(--c2);
+      border-color: var(--c2);
+      
+    }
+    .lc.solid .lc.solid {
+      background-color: var(--c3);
+      border-color: var(--c3);
+    }
+    .nc.solid .lc.solid {
+      background-color: var(--c4);
+      border-color: var(--c4);
+    }
+
+    /* NO */
+    .hc.solid .nc.solid { 
+      background-color: transparent; 
+      border-color: var(--c2);
+    }
+    .lc.solid .nc.solid { 
+      background-color: transparent; 
+      border-color: var(--c3);
+    }
+    .nc.solid .nc.solid { 
+      background-color: transparent; 
+      border-color: var(--c4);
+    }
+
+    /* ===================================================================== */
+    /* BUTTON */
+
+    button {
+      border: none; 
+      padding: 0 16px; 
+      border-radius: 8px; 
+      height: 40px; 
+      font-size: 16px; 
+      border: solid transparent 3px;
+      cursor: pointer;
+    }
+    button.focused, button:focus {
+      outline: solid 2px var(--c5);
+      outline-offset: -5px;
+    }
+
+    .hc button {
+      background-color: var(--c2);
+      color: var(--c5);
+    } .hc button:focus, .hc button.focused {
+      outline: solid 2px var(--c5);
+      outline-offset: -2px;
+    }
+
+    .lc button {
+      background-color: var(--c1);
+      color: var(--c4);
+    }
+
+    .nc button {
+      background-color: var(--c1);
+      color: var(--c5);
+    }
+    .nc button.focused {
+      
+    }
+
+    /* ===================================================================== */
+    /* INPUT */
+
+    .input {
+      position: relative;
+      display: flex;
+      flex: 1;
+      min-width: 0;
+    }
+    .input label {
+      line-height: 40px;
+      padding: 0 8px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      text-align: right;
+      color: var(--c3);
+    }
+    .input input {
+      flex: 1;
+    }
+
+    input {
+      height: 40px;
+      border: solid 3px transparent;
+      border-radius: 8px;
+      font-size: 16px;
+      line-height: 24px;
+      padding: 0 8px;
+      box-sizing: border-box;
+      background-color: var(--c5);
+      border-color: var(--c5);
+      flex: 1;
+      min-width: 0;
+    }
+    .nc input {
+      border-color: var(--c4);
+    }
+    input.focused, input:focus {
+      border-color: var(--1);
+      outline: solid 2px var(--c5);
+      outline-offset: 0px;
+    }
+
+    /* ===================================================================== */
+    /* PARAGRAPH */
+
+    p {
+      margin: 0;
+      line-height: 24px;
+      font-size: 16px;
+    }
+    .hc p {
+      color: var(--c5);
+    }
+    .lc p {
+      color: var(--c2);
+    }
+    .nc p {
+      color: var(--c1);
+    }
+
+    /* ===================================================================== */
+    /* TAG */
+
+    .tag {
+      line-height: 18px;
+      display: inline-block;
+      padding: 0 4px;
+      border-radius: 4px;
+      border: solid 2px;
+    } 
+    
+    .hc .hc.tag {
+      background-color: var(--c5);
+      border-color: var(--c5);
+      color: var(--c1);
+    } .hc .lc.tag {
+      background-color: var(--c2);
+      border-color: var(--c2);
+      color: var(--c5);
+    } .hc .nc.tag {
+      background-color: transparent;
+      border-color: var(--c2);
+      color: var(--c5);
+    }
+    
+    .lc .hc.tag {
+      background-color: var(--c1);
+      border-color: var(--c1);
+      color: var(--c4);
+    } .lc .lc.tag {
+      background-color: var(--c2);
+      border-color: var(--c2);
+      color: var(--c4);
+    } .lc .nc.tag {
+      background-color: transparent;
+      border-color: var(--c3);
+      color: var(--c2);
+    }
+    
+    .nc .hc.tag {
+      background-color: var(--c1);
+      border-color: var(--c1);
+      color: var(--c5);
+    } .nc .lc.tag {
+      background-color: var(--c4);
+      border-color: var(--c4);
+      color: var(--c2);
+    } .nc .nc.tag {
+      background-color: transparent;
+      border-color: var(--c3);
+      color: var(--c1);
+    }
+
+    /* ===================================================================== */
+  </style>
+</head>
+<body>
+
+    <div class="solid hc col">
+      <div class="row">
+        <button>Primary button</button>
+        <button class="focused">Primary button</button>
+      </div>
+      <div class="row">
+        <button>Secondary button</button>
+        <button class="focused">Primary button</button>
+      </div>
+      <div class="row">
+        <div class="input"><input value="Text"><label>Ab</label></div>
+        <div class="input"><input class="focused" value="Text"><label>Ab</label></div>
+      </div>
+      <p>
+        This is random text, display only, not interactive.
+        Regardless, that description is not enought, 
+        and I need to add more text for testing purposes.
+      </p>
+      <p>
+        There are also tags like 
+        <span class="hc tag">high contrast</span>,
+        <span class="lc tag">low contrast</span>,
+        and here I am adding some more text
+        <span class="nc tag">no contrast</span>.
+      </p>
+      <div class="solid hc col">
+        <p>Hello high contrast nested world</p>
+      </div>
+      <div class="solid lc col">
+        <p>Hellow low contrast nested world</p>
+      </div>
+      <div class="solid nc col">
+        <p>Hello no contrast nested world</p>
+      </div>
+      <p>
+        This is a random chunk of text to sandwich the subregion above.
+      </p>
+    </div>
+
+    <div class="solid lc col">
+      <div class="row">
+        <button>Primary button</button>
+        <button class="focused">Primary button</button>
+      </div>
+      <div class="row">
+        <button>Secondary button</button>
+        <button class="focused">Primary button</button>
+      </div>
+      <div class="row">
+        <div class="input"><input value="Text"><label>Ab</label></div>
+        <div class="input"><input class="focused" value="Text"><label>Ab</label></div>
+      </div>
+      <p>
+        This is random text, display only, not interactive.
+        Regardless, that description is not enought, 
+        and I need to add more text for testing purposes.
+      </p>
+      <p>
+        There are also tags like 
+        <span class="hc tag">high contrast</span>,
+        <span class="lc tag">low contrast</span>,
+        and here I am adding some more text
+        <span class="nc tag">no contrast</span>.
+      </p>
+      <div class="solid hc col">
+        <p>Hello high contrast nested world</p>
+      </div>
+      <div class="solid lc col">
+        <p>Hellow low contrast nested world</p>
+      </div>
+      <div class="solid nc col">
+        <p>Hello no contrast nested world</p>
+      </div>
+      <p>
+        This is a random chunk of text to sandwich the subregion above.
+      </p>
+    </div>
+
+    <div class="solid nc col">
+      <div class="row">
+        <button>Primary button</button>
+        <button class="focused">Primary button</button>
+      </div>
+      <div class="row">
+        <button>Secondary button</button>
+        <button class="focused">Primary button</button>
+      </div>
+      <div class="row">
+        <div class="input"><input value="Text"><label>Ab</label></div>
+        <div class="input"><input class="focused" value="Text"><label>Ab</label></div>
+      </div>
+      <p>
+        This is random text, display only, not interactive.
+        Regardless, that description is not enought, 
+        and I need to add more text for testing purposes.
+      </p>
+      <p>
+        There are also tags like 
+        <span class="hc tag">high contrast</span>,
+        <span class="lc tag">low contrast</span>,
+        and here I am adding some more text
+        <span class="nc tag">no contrast</span>.
+      </p>
+      <div class="solid hc col">
+        <p>Hello high contrast nested world</p>
+      </div>
+      <div class="solid lc col">
+        <p>Hellow low contrast nested world</p>
+      </div>
+      <div class="solid nc col">
+        <p>Hello no contrast nested world</p>
+      </div>
+      <p>
+        This is a random chunk of text to sandwich the subregion above.
+      </p>
+    </div>
+
+</body>
+</html>
