@@ -10,6 +10,8 @@ input {
   flex-shrink: 1;
   min-width: 0px;
   margin: 0;
+} input::placeholder {
+  color: var(--outline-on-note);
 } input:focus {
   background-color: var(--paper);
   border-color: var(--ink);
@@ -44,7 +46,7 @@ button:disabled {
   color: var(--ink-on-note);
 }
 button:focus {
-  outline: var(--primary) 2px solid;
+  outline: var(--paper) 2px solid;
   outline-offset: -8px;
 }
 
@@ -82,6 +84,8 @@ hr {
   border: none;
   margin: 0;
 } .col hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
   width: 100%;
 } .col hr.oversize {
   padding: 0 8px 0 8px;

@@ -1,9 +1,8 @@
-"use strict";
 class MyChipElement extends HTMLElement {
+    main = "";
+    alt = "";
     constructor() {
         super();
-        this.main = "";
-        this.alt = "";
     }
     static get observedAttributes() {
         return ["main", "alt"];

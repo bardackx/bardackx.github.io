@@ -14,6 +14,17 @@ body {
   color: var(--ink);
 }
 
+/* RANDOM */
+.hidden {
+  display: none;
+}
+
+/* SLASH */
+.slash {
+  opacity: 0.382;
+  text-decoration-line: line-through;
+}
+
 /* TAG */
 .tag {
   border-radius: 4px;
