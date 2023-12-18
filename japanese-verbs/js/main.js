@@ -27,14 +27,21 @@ class VerbLearningTool {
     }
     // private fromMasuTo
     fromPlainToNegativeForm() {
+        // THIS SHOULD CALL A METHOD WITH
+        // - EXPECTED INPUT STRING
+        // - GUIDANCE ON FAIL
+        // 
+        // SO THAT CONFUSIONS ARE REUSED FOR EVERY CASE
         const userInput = romanjiToHiragana(this.input);
         const plainPastForm = this.verb.getPlainPastForm();
+        // RETURN IF EXPECTED EQUALS USER INPUT
         if (userInput === plainPastForm) {
             this.reset();
             return;
         }
         const katta = "かった";
         const stemKatta = this.verb.getStem() + katta;
+        // CREATE A LIST OF CONFUSIONS LIKE THIS AND SHOW THEM ON MATCH
         if (userInput === stemKatta) {
             this.feedbackElement.classList.remove("hidden");
             this.feedbackElement.innerHTML = `<p>
@@ -42,6 +49,7 @@ class VerbLearningTool {
       you express the past tense of an <b>い-adjective</b>, not a verb
       </p>`;
         }
+        // CREATE A LIST OF RULES LIKE THIS AND SHOW THEM ALWAYS
         this.ruleElement.classList.remove("hidden");
         this.ruleElement.innerHTML = `
       <p class="black solid oversize p8 mb4">Ichidan plain form → past plain form</p>
