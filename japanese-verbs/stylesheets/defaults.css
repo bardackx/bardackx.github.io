@@ -84,8 +84,8 @@ hr {
   border: none;
   margin: 0;
 } .col hr {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   width: 100%;
 } .col hr.oversize {
   padding: 0 8px 0 8px;

@@ -50,13 +50,16 @@ body {
 .solid {
   overflow: hidden;
   background-color: red;
-  color: white;
+  color: yellow;
 } .note.solid {
   background-color: var(--note);
   color: var(--ink-on-note);
 } .black.solid {
   background-color: var(--ink);
   color: var(--paper);
+} .white.solid {
+  background-color: var(--paper);
+  color: var(--ink);
 } .solid.oversize.p8 {
   padding: 8px;
   width: 100%;

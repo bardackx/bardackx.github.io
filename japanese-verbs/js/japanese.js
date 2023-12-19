@@ -15,7 +15,7 @@ export class Verb {
         this.reading = reading;
         this.characters = characters;
     }
-    getPlainPastForm() {
+    getPast() {
         switch (this.type) {
             case VerbType.Ichidan:
                 return this.getStem() + "た";
@@ -26,6 +26,27 @@ export class Verb {
         switch (this.type) {
             case VerbType.Ichidan:
                 return this.reading.substring(0, this.reading.length - 1);
+        }
+        throw new Error("TODO");
+    }
+    getMasuForm() {
+        switch (this.type) {
+            case VerbType.Ichidan:
+                return this.getStem() + "ます";
+        }
+        throw new Error("TODO");
+    }
+    getNegative() {
+        switch (this.type) {
+            case VerbType.Ichidan:
+                return this.getStem() + "ない";
+        }
+        throw new Error("TODO");
+    }
+    getNegativeMasu() {
+        switch (this.type) {
+            case VerbType.Ichidan:
+                return this.getStem() + "ません";
         }
         throw new Error("TODO");
     }
@@ -83,11 +104,10 @@ function parseWritingAndReading(input) {
 }
 export const VERBS = [
     "1; 食べる; たべる; (食,た)べる",
-    /*
     "1; 着る; きる; (着,き)る",
     "1; 信じる; しんじる; (信,しん)じる",
     "1; 寝る; ねる; (寝,ね)る",
-    "1; 起きる; おきる; (起,あ)きる",
+    "1; 起きる; おきる; (起,お)きる",
     "1; 出る; でる; (出,で)る",
     "1; 掛ける; かける; (掛,か)ける",
     "1; 捨てる; すてる; (捨,す)てる",
@@ -105,7 +125,6 @@ export const VERBS = [
     //
     "?; する; する; する",
     "?; くる; かる; くる",
-    */
 ].map((string) => {
     const [typeCode, verb, reading, writingAndReading] = string.split(";").map((e) => e.trim());
     const type = typeCode === "5"
@@ -117,6 +136,7 @@ export const VERBS = [
 });
 export const ICHIDAN_VERBS = VERBS.filter((e) => e.type === VerbType.Ichidan);
 export function romanjiToHiragana(romanji) {
+    romanji = romanji.toLowerCase();
     const hiraganaMap = {
         a: "あ",
         i: "い",
@@ -129,6 +149,7 @@ export function romanjiToHiragana(romanji) {
         ke: "け",
         ko: "こ",
         sa: "さ",
+        si: "し",
         shi: "し",
         su: "す",
         se: "せ",
@@ -163,13 +184,14 @@ export function romanjiToHiragana(romanji) {
         ro: "ろ",
         wa: "わ",
         wo: "を",
-        n: "ん",
+        nn: "ん",
         ga: "が",
         gi: "ぎ",
         gu: "ぐ",
         ge: "げ",
         go: "ご",
         za: "ざ",
+        nji: "んじ",
         ji: "じ",
         zu: "ず",
         ze: "ぜ",
@@ -195,7 +217,7 @@ export function romanjiToHiragana(romanji) {
     while (i < romanji.length) {
         let found = false;
         // Check for the small tsu (っ) for doubled consonants
-        if (romanji[i] === romanji[i + 1]) {
+        if (romanji[i] === romanji[i + 1] && romanji[i] !== "n") {
             hiraganaResult += "っ";
             i++;
             found = true;

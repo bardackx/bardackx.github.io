@@ -1,0 +1,20 @@
+    // CREATE A LIST OF RULES LIKE THIS AND SHOW THEM ALWAYS
+    this.ruleElement.classList.remove("hidden");
+    this.ruleElement.innerHTML = `
+      <p class="black solid oversize p8 mb4">Ichidan plain form → past plain form</p>
+      
+      <p>
+        Remove the trailing <span class="tag">る</span> to get the stem,
+        <span class="dark tag">食べ<span class="slash">る</span></span> →
+        <span class="tag">食べ</span>, 
+        then attach <span class="black tag">た</span> to the stem
+      </p>
+      
+      <hr class="oversize" />
+      
+      <p style="text-align: right">
+        <span class="dark tag">食べ<span class="slash">る</span></span> +
+        <span class="black tag">た</span> →
+        <span class="black tag">食べた</span>
+      </p>
+      `;
