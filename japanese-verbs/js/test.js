@@ -1,18 +1,14 @@
 // irregular (v3)
 // ru-verbs (v2)
 // u-verbs (v1)
-const FromIchidanPlainToPolite = {
-    getPrompt() {
-        return "Make it [!polite]";
-    },
+const FromIchidanPlainToPoliteNonPastAffirmative = {
+    prompt: "Make it [non-past] [!polite] [affirmative]",
     getPromptVerb(verb) {
         return verb.characters;
     },
-    getRulesTitle(verb) {
-        return "Ichidan plain form to masu form";
-    },
+    rule: "Ichidan plain form to masu form",
     getRightAnswer(verb) {
-        return verb.getMasuForm();
+        return verb.getPoliteNonPastAffirmative();
     },
     getCorrectionMessage(verb) {
         return "Adding [ます] to the stem is how you conjugate the masu form.";
@@ -23,15 +19,11 @@ const FromIchidanPlainToPolite = {
     },
 };
 const FromIchidanPlainToPoliteNegative = {
-    getPrompt() {
-        return "Make it [!negative polite]";
-    },
+    prompt: "Make it [non-past] [!polite] [!negative]",
     getPromptVerb(verb) {
         return verb.characters;
     },
-    getRulesTitle(verb) {
-        return "Ichidan plain form to negative masu form";
-    },
+    rule: "Ichidan plain form to negative masu form",
     getRightAnswer(verb) {
         return verb.getNegativeMasu();
     },
@@ -44,17 +36,13 @@ const FromIchidanPlainToPoliteNegative = {
     },
 };
 const FromIchidanPlainToPlainPast = {
-    getPrompt() {
-        return "Make it [!past]";
-    },
+    prompt: "Make it [!past] [plain] [affirmative]",
     getPromptVerb(verb) {
         return verb.characters;
     },
-    getRulesTitle(verb) {
-        return "Ichidan plain form to past affirmative form";
-    },
+    rule: "Ichidan plain form to past affirmative form",
     getRightAnswer(verb) {
-        return verb.getPast();
+        return verb.getPlainPastAffirmative();
     },
     getCorrectionMessage(verb) {
         return "Adding [た] to the stem is how you conjugate the past form.";
@@ -65,17 +53,13 @@ const FromIchidanPlainToPlainPast = {
     },
 };
 const FromIchidanPlainToPlainPastNegative = {
-    getPrompt() {
-        return "Make it [!plain past negative]";
-    },
+    prompt: "Make it [!past] [plain] [!negative]",
     getPromptVerb(verb) {
         return verb.characters;
     },
-    getRulesTitle(verb) {
-        return "Ichidan plain form to past negative form";
-    },
+    rule: "Ichidan plain form to past negative form",
     getRightAnswer(verb) {
-        return verb.getPast();
+        return verb.getPlainPastNegative();
     },
     getCorrectionMessage(verb) {
         return "Adding [なかった] to the stem is how you conjugate the past negative form.";
@@ -86,17 +70,13 @@ const FromIchidanPlainToPlainPastNegative = {
     },
 };
 const FromIchidanPlainToPlainNegative = {
-    getPrompt() {
-        return "Make it [!negative]";
-    },
+    prompt: "Make it [non-past] [plain] [!negative]",
     getPromptVerb(verb) {
         return verb.characters;
     },
-    getRulesTitle(verb) {
-        return "Ichidan plain form to negative form";
-    },
+    rule: "Ichidan plain form to negative form",
     getRightAnswer(verb) {
-        return verb.getNegative();
+        return verb.getPlainNonPastNegative();
     },
     getCorrectionMessage(verb) {
         return "Adding [ない] to the stem is how you conjugate the negative form.";
@@ -107,11 +87,9 @@ const FromIchidanPlainToPlainNegative = {
     },
 };
 export const VERB_TASKS = [
-    // non-past
-    FromIchidanPlainToPlainNegative,
-    FromIchidanPlainToPolite,
+    FromIchidanPlainToPoliteNonPastAffirmative,
     FromIchidanPlainToPoliteNegative,
-    // past
     FromIchidanPlainToPlainPast,
     FromIchidanPlainToPlainPastNegative,
+    FromIchidanPlainToPlainNegative,
 ];

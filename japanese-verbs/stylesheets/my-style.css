@@ -4,6 +4,7 @@ html {
   --outline-on-note: hsl(0, 0%, 77%); /* ~1.3 */
   --ink-on-note: hsl(0deg 0% 39%);
   --ink: hsl(0deg 0% 14%);
+  --red-ink: hsl(0deg 50% 53%);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -44,6 +45,10 @@ body {
   background-color: var(--ink-on-note);
   color: var(--paper);
   border-color: var(--ink-on-note);
+} .red.tag {
+  background-color: var(--red-ink);
+  color: var(--paper);
+  border-color: var(--red-ink);
 }
 
 /* SOLID */
@@ -66,3 +71,31 @@ body {
   margin-left: -8px;
   margin-top: -8px;
 }
+
+/* STAMP */
+.mistake-stamp {
+  color: var(--red-ink);
+  font-size: 48px;
+  position: absolute;
+  border: solid 4px var(--red-ink);
+  line-height: 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  padding: 8px;
+  outline: solid 4px var(--red-ink);
+  outline-offset: 4px;
+  right: 0;
+  top: 0;
+  margin: 48px;
+  animation: fade-out 2s ease-in-out;
+}
+@keyframes fade-out {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+

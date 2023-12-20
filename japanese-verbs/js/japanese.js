@@ -15,13 +15,6 @@ export class Verb {
         this.reading = reading;
         this.characters = characters;
     }
-    getPast() {
-        switch (this.type) {
-            case VerbType.Ichidan:
-                return this.getStem() + "た";
-        }
-        throw new Error("TODO");
-    }
     getStem() {
         switch (this.type) {
             case VerbType.Ichidan:
@@ -29,14 +22,28 @@ export class Verb {
         }
         throw new Error("TODO");
     }
-    getMasuForm() {
+    getPlainPastAffirmative() {
+        switch (this.type) {
+            case VerbType.Ichidan:
+                return this.getStem() + "た";
+        }
+        throw new Error("TODO");
+    }
+    getPlainPastNegative() {
+        switch (this.type) {
+            case VerbType.Ichidan:
+                return this.getStem() + "なかった";
+        }
+        throw new Error("TODO");
+    }
+    getPoliteNonPastAffirmative() {
         switch (this.type) {
             case VerbType.Ichidan:
                 return this.getStem() + "ます";
         }
         throw new Error("TODO");
     }
-    getNegative() {
+    getPlainNonPastNegative() {
         switch (this.type) {
             case VerbType.Ichidan:
                 return this.getStem() + "ない";

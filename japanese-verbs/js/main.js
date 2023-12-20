@@ -65,6 +65,7 @@ class VerbLearningTool {
             return;
         }
         this.clearSuccess();
+        // CONFUSIONS
         const confusionTask = VERB_TASKS.find((e) => e.getRightAnswer(this.verb) === userInput);
         if (confusionTask != null) {
             this.feedbackElement.classList.remove("hidden");
@@ -72,23 +73,18 @@ class VerbLearningTool {
         Not quite. ${confusionTask.getCorrectionMessage(this.verb)}
       </p>`;
         }
-        /*
-        const katta = "かった";
-        // CREATE A LIST OF CONFUSIONS LIKE THIS AND SHOW THEM ON MATCH
-        if (userInput === stemKatta) {
-          this.feedbackElement.classList.remove("hidden");
-          this.feedbackElement.innerHTML = `<p>
-          Not quite, adding <span class='tag'>${katta}</span> to the stem is how
-          you express the past tense of an <b>い-adjective</b>, not a verb
-          </p>`;
-        }
-        */
-        // CONFUSIONS
         // RULES FROM THE TASK
         this.ruleElement.classList.remove("hidden");
         this.ruleElement.innerHTML = "<p class='black solid oversize p8 mb4'>" +
-            this.task.getRulesTitle(this.verb) + "</p><p>" +
-            this.task.getRulesMessage(this.verb) + "</p>";
+            myMarkdownToHtml(this.task.rule) + "</p><p>" +
+            myMarkdownToHtml(this.task.getRulesMessage(this.verb)) + "</p>";
+        // ERROR STAMP
+        const stamp = document.createElement("span");
+        stamp.className = "mistake-stamp";
+        stamp.innerText = "誤";
+        stamp.style.transform = `rotate(${(1 - Math.random() * 2) * 30}deg) translate(${(1 - Math.random() * 2) * 24}px, ${(1 - Math.random() * 2) * 24}px)`;
+        stamp.addEventListener("animationend", () => document.body.removeChild(stamp));
+        document.body.appendChild(stamp);
         console.log({
             userInput,
             rightAnswer,
@@ -138,7 +134,7 @@ class VerbLearningTool {
     setTaskAndVerb(task, verb) {
         this.task = task;
         this.verb = verb;
-        this.instructionsElement.innerHTML = task.getPrompt(this.verb);
+        this.instructionsElement.innerHTML = myMarkdownToHtml(task.prompt);
         this.renderVerb();
     }
     renderVerb() {
@@ -150,4 +146,28 @@ export function init() {
     tool = new VerbLearningTool();
     tool.reset();
     // tool.submit();
+}
+function myMarkdownToHtml(md) {
+    let html = "";
+    for (let i = 0; i < md.length; i++) {
+        if (md[i] === "[") {
+            html += "<span class='tag";
+            if (md[i + 1] === "!") {
+                html += " black";
+                i++;
+            }
+            if (md[i + 1] === "-") {
+                html += " red";
+                i++;
+            }
+            html += "'>";
+        }
+        else if (md[i] === "]") {
+            html += "</span>";
+        }
+        else {
+            html += md[i];
+        }
+    }
+    return html;
 }
