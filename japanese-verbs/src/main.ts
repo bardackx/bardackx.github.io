@@ -1,10 +1,9 @@
 import { getRandomElementFromArray } from "./array-utils.js";
 import {
   ICHIDAN_VERBS,
-  romanjiToHiragana,
   Verb,
-  VerbType,
 } from "./japanese.js";
+import { romanjiToHiragana } from "./romanjiToHiragana.js";
 import { VERB_TASKS, VerbTask } from "./test.js";
 
 class VerbLearningTool {

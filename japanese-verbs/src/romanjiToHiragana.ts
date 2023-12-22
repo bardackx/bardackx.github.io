@@ -67,7 +67,7 @@ const vowelIndices = {
   e: 3,
   o: 4,
 };
-function romanjiToHiragana(romanji: string): string {
+export function romanjiToHiragana(romanji: string): string {
   let hiragana = "";
   let row = "";
   let unhandled = "";
