@@ -236,13 +236,19 @@ export function romanjiToHiragana(romanji: string): string {
     let found = false;
 
     // Check for the small tsu (っ) for doubled consonants
-    if (romanji[i] === romanji[i + 1] && romanji[i] !== "n") {
+    if (
+      romanji[i] === "n" && Array.from("kstchmzdbp").includes(romanji[i + 1])
+    ) {
+      hiraganaResult += "ん";
+      i++;
+      found = true;
+    } else if (romanji[i] === romanji[i + 1] && romanji[i] !== "n") {
       hiraganaResult += "っ";
       i++;
       found = true;
     } else {
       for (let j = 3; j > 0; j--) {
-        const substr = romanji.substr(i, j);
+        const substr = romanji.substring(i, j);
         if (hiraganaMap[substr]) {
           hiraganaResult += hiraganaMap[substr];
           i += j;
