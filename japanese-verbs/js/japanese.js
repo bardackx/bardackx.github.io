@@ -57,6 +57,20 @@ export class Verb {
         }
         throw new Error("TODO");
     }
+    getPastPoliteNegative() {
+        switch (this.type) {
+            case VerbType.Ichidan:
+                return this.getStem() + "ませんでした";
+        }
+        throw new Error("TODO");
+    }
+    getPastPoliteAffirmative() {
+        switch (this.type) {
+            case VerbType.Ichidan:
+                return this.getStem() + "ました";
+        }
+        throw new Error("TODO");
+    }
 }
 function parseWritingAndReading(input) {
     const output = [];
