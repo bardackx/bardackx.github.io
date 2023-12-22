@@ -10,7 +10,7 @@ class VerbLearningTool {
     feedbackElement;
     ruleElement;
     successElement;
-    primaryActionElement;
+    buttonElement;
     success = false;
     verb;
     input = "";
@@ -28,11 +28,12 @@ class VerbLearningTool {
             this.input = this.inputElement.value;
             this.input = romanjiToHiragana(this.input);
             this.inputElement.value = this.input;
+            this.buttonElement.disabled = this.input === '';
         };
         this.feedbackElement = document.querySelector("#feedback");
         this.ruleElement = document.querySelector("#rule");
         this.successElement = document.querySelector("#success");
-        this.primaryActionElement = document.querySelector("#primary-action");
+        this.buttonElement = document.querySelector("#primary-action");
     }
     submit() {
         if (this.success) {
@@ -46,7 +47,7 @@ class VerbLearningTool {
         this.success = true;
         this.clearFeedback();
         this.clearRule();
-        this.primaryActionElement.innerHTML = "Next";
+        this.buttonElement.innerHTML = "Next";
         this.successElement.classList.remove("hidden");
         this.successElement.innerHTML = html;
     }
@@ -135,7 +136,8 @@ class VerbLearningTool {
         this.setTaskAndVerb(nextTask, nextVerb);
         this.inputElement.disabled = false;
         this.inputElement.focus();
-        this.primaryActionElement.innerHTML = "Ok";
+        this.buttonElement.innerHTML = "Ok";
+        this.buttonElement.disabled = true;
         this.success = false;
         this.clearFeedback();
         this.clearSuccess();

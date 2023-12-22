@@ -11,7 +11,7 @@ class VerbLearningTool {
   private feedbackElement: HTMLDivElement;
   private ruleElement: HTMLDivElement;
   private successElement: HTMLDivElement;
-  private primaryActionElement: HTMLButtonElement;
+  private buttonElement: HTMLButtonElement;
 
   private success = false;
   private verb: Verb;
@@ -31,11 +31,12 @@ class VerbLearningTool {
       this.input = this.inputElement.value;
       this.input = romanjiToHiragana(this.input);
       this.inputElement.value = this.input;
+      this.buttonElement.disabled = this.input === ''
     };
     this.feedbackElement = document.querySelector("#feedback");
     this.ruleElement = document.querySelector("#rule");
     this.successElement = document.querySelector("#success");
-    this.primaryActionElement = document.querySelector("#primary-action");
+    this.buttonElement = document.querySelector("#primary-action");
   }
 
   submit() {
@@ -52,7 +53,7 @@ class VerbLearningTool {
     this.success = true;
     this.clearFeedback();
     this.clearRule();
-    this.primaryActionElement.innerHTML = "Next";
+    this.buttonElement.innerHTML = "Next";
     this.successElement.classList.remove("hidden");
     this.successElement.innerHTML = html;
   }
@@ -168,7 +169,8 @@ class VerbLearningTool {
     );
     this.inputElement.disabled = false;
     this.inputElement.focus();
-    this.primaryActionElement.innerHTML = "Ok";
+    this.buttonElement.innerHTML = "Ok";
+    this.buttonElement.disabled = true;
     this.success = false;
     this.clearFeedback();
     this.clearSuccess();

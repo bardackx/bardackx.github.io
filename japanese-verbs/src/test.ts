@@ -117,7 +117,7 @@ const IchidanPastPoliteAffirmative: VerbTask = {
   },
   getRulesMessage(verb) {
     return "Remove the trailing [る] to get the stem, " +
-      "then append [ました] to from the past polite affirmative form.";
+      "then append [!ました] to from the past polite affirmative form.";
   },
 };
 
@@ -135,16 +135,16 @@ const IchidanPastPoliteNegative: VerbTask = {
   },
   getRulesMessage(verb) {
     return "Remove the trailing [る] to get the stem, " +
-      "then append [ませんでした] to from the past polite negative form.";
+      "then append [!ませんでした] to from the past polite negative form.";
   },
 };
 
 export const VERB_TASKS: ReadonlyArray<VerbTask> = [
-//  IchidanNonPastPlainNegative,
-//  IchidanNonPastPoliteAffirmative,
-//  IchidanNonPastPoliteNegative,
+  IchidanNonPastPlainNegative,
+  IchidanNonPastPoliteAffirmative,
+  IchidanNonPastPoliteNegative,
   IchidanPastPlainAaffirmative,
-//  IchidanPastPlainNegative,
-//  IchidanPastPoliteAffirmative,
-//  IchidanPastPoliteNegative,
+  IchidanPastPlainNegative,
+  IchidanPastPoliteAffirmative,
+  IchidanPastPoliteNegative,
 ];
