@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: CC-BY-4.0 */
+
 const table = {
   "": ["あ", "い", "う", "え", "お"],
   k: ["か", "き", "く", "か", "こ"],
@@ -58,49 +60,44 @@ const irregularTable = {
   xn: "ん",
   nn: "ん",
 };
-const vowelToIndex = {
+const vowelIndices = {
   a: 0,
   i: 1,
   u: 2,
   e: 3,
   o: 4,
 };
-// - n followed by another n, then outputs ん and returns to origin
-// - n followed by consonant outputs ん then transitions to consonant
-// - repeated consonant outputs っ, and doesn't transition
-
 function romanjiToHiragana(romanji: string): string {
   let hiragana = "";
   let row = "";
-  let invalidSequence = "";
-  const outputAndReset = (output: string) => {
+  let unhandled = "";
+  const pushAndReset = (output: string) => {
     hiragana += output;
-    invalidSequence = "";
+    unhandled = "";
     row = "";
   };
-  const popInvalidSequence = () => {
-    invalidSequence = invalidSequence.substring(1);
+  const pushAndSlide = (output: string) => {
+    hiragana += output;
+    unhandled = unhandled.substring(1);
   };
   for (let i = 0; i < romanji.length; i++) {
     const c = romanji[i];
-    invalidSequence += c;
-    const vowelIndex = vowelToIndex[c] ?? -1;
+    unhandled += c;
+    const vowelIndex = vowelIndices[c] ?? -1;
     if (vowelIndex >= 0) {
-      outputAndReset(table[row][vowelIndex] ?? invalidSequence);
+      pushAndReset(table[row][vowelIndex] ?? unhandled);
     } else if (irregularTable[row + c] != null) {
-      outputAndReset(irregularTable[row + c]);
+      pushAndReset(irregularTable[row + c]);
     } else if (row === "n" && table[c] != null) {
-      popInvalidSequence();
-      hiragana += "ん";
+      pushAndSlide("ん");
       row = c;
     } else if (row === c) {
-      popInvalidSequence();
-      hiragana += "っ";
+      pushAndSlide("っ");
     } else if (table[row + c] != null) {
       row = row + c;
     } else {
-      outputAndReset(invalidSequence);
+      pushAndReset(unhandled);
     }
   }
-  return hiragana + invalidSequence;
+  return hiragana + unhandled;
 }
