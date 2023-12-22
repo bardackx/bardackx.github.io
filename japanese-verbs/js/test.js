@@ -121,11 +121,11 @@ const IchidanPastPoliteNegative = {
     },
 };
 export const VERB_TASKS = [
-    IchidanNonPastPlainNegative,
-    IchidanNonPastPoliteAffirmative,
-    IchidanNonPastPoliteNegative,
+    //  IchidanNonPastPlainNegative,
+    //  IchidanNonPastPoliteAffirmative,
+    //  IchidanNonPastPoliteNegative,
     IchidanPastPlainAaffirmative,
-    IchidanPastPlainNegative,
-    IchidanPastPoliteAffirmative,
-    IchidanPastPoliteNegative,
+    //  IchidanPastPlainNegative,
+    //  IchidanPastPoliteAffirmative,
+    //  IchidanPastPoliteNegative,
 ];

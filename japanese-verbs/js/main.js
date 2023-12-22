@@ -1,5 +1,5 @@
 import { getRandomElementFromArray } from "./array-utils.js";
-import { ICHIDAN_VERBS, } from "./japanese.js";
+import { ICHIDAN_VERBS } from "./japanese.js";
 import { romanjiToHiragana } from "./romanjiToHiragana.js";
 import { VERB_TASKS } from "./test.js";
 class VerbLearningTool {
@@ -49,8 +49,6 @@ class VerbLearningTool {
         this.primaryActionElement.innerHTML = "Next";
         this.successElement.classList.remove("hidden");
         this.successElement.innerHTML = html;
-        this.inputElement.disabled = true;
-        this.primaryActionElement.focus();
     }
     fromPlainToNegativeForm() {
         // THIS SHOULD CALL A METHOD WITH
@@ -63,6 +61,8 @@ class VerbLearningTool {
         // RETURN IF EXPECTED EQUALS USER INPUT
         if (userInput === rightAnswer) {
             this.changeToSuccessState("Correct");
+            // CORRECT STAMP
+            this.showStamp('success');
             return;
         }
         this.clearSuccess();
@@ -80,16 +80,27 @@ class VerbLearningTool {
             myMarkdownToHtml(this.task.rule) + "</p><p>" +
             myMarkdownToHtml(this.task.getRulesMessage(this.verb)) + "</p>";
         // ERROR STAMP
-        const stamp = document.createElement("span");
-        stamp.className = "mistake-stamp";
-        stamp.innerText = "誤";
-        stamp.style.transform = `rotate(${(1 - Math.random() * 2) * 30}deg) translate(${(1 - Math.random() * 2) * 24}px, ${(1 - Math.random() * 2) * 24}px)`;
-        stamp.addEventListener("animationend", () => document.body.removeChild(stamp));
-        document.body.appendChild(stamp);
+        this.showStamp('error');
         console.log({
             userInput,
             rightAnswer,
         });
+    }
+    showStamp(stampType) {
+        const stamp = document.createElement("span");
+        stamp.style.top = "48px";
+        if (stampType === 'error') {
+            stamp.style.right = "48px";
+            stamp.innerText = "誤";
+        }
+        else {
+            stamp.style.left = "48px";
+            stamp.innerText = "正";
+        }
+        stamp.className = stampType + " stamp";
+        stamp.style.transform = `rotate(${(1 - Math.random() * 2) * 30}deg) translate(${(1 - Math.random() * 2) * 24}px, ${(1 - Math.random() * 2) * 24}px)`;
+        stamp.addEventListener("animationend", () => document.body.removeChild(stamp));
+        document.body.appendChild(stamp);
     }
     clearRule() {
         this.ruleElement.classList.add("hidden");

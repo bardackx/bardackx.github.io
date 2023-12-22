@@ -5,6 +5,7 @@ html {
   --ink-on-note: hsl(0deg 0% 39%);
   --ink: hsl(0deg 0% 14%);
   --red-ink: hsl(0deg 50% 53%);
+  --green-ink: hsl(145deg, 50%, 43%);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -73,21 +74,18 @@ body {
 }
 
 /* STAMP */
-.mistake-stamp {
-  color: var(--red-ink);
+.stamp {
+  color: var(--ink);
+  border: solid 4px var(--ink);
+  outline: solid 4px var(--ink);
   font-size: 48px;
   position: absolute;
-  border: solid 4px var(--red-ink);
   line-height: 48px;
   width: 48px;
   height: 48px;
   border-radius: 48px;
   padding: 8px;
-  outline: solid 4px var(--red-ink);
   outline-offset: 4px;
-  right: 0;
-  top: 0;
-  margin: 48px;
   animation: fade-out 2s ease-in-out;
 }
 @keyframes fade-out {
@@ -98,4 +96,13 @@ body {
     opacity: 0%;
   }
 }
-
+.error.stamp {
+  color: var(--red-ink);
+  border: solid 4px var(--red-ink);
+  outline: solid 4px var(--red-ink);
+}
+.success.stamp {
+  color: var(--green-ink);
+  border: solid 4px var(--green-ink);
+  outline: solid 4px var(--green-ink);
+}

@@ -1,8 +1,5 @@
 import { getRandomElementFromArray } from "./array-utils.js";
-import {
-  ICHIDAN_VERBS,
-  Verb,
-} from "./japanese.js";
+import { ICHIDAN_VERBS, Verb } from "./japanese.js";
 import { romanjiToHiragana } from "./romanjiToHiragana.js";
 import { VERB_TASKS, VerbTask } from "./test.js";
 
@@ -58,8 +55,6 @@ class VerbLearningTool {
     this.primaryActionElement.innerHTML = "Next";
     this.successElement.classList.remove("hidden");
     this.successElement.innerHTML = html;
-    this.inputElement.disabled = true;
-    this.primaryActionElement.focus();
   }
 
   private fromPlainToNegativeForm() {
@@ -75,6 +70,10 @@ class VerbLearningTool {
     // RETURN IF EXPECTED EQUALS USER INPUT
     if (userInput === rightAnswer) {
       this.changeToSuccessState("Correct");
+
+      // CORRECT STAMP
+      this.showStamp('success');
+
       return;
     }
 
@@ -98,9 +97,25 @@ class VerbLearningTool {
       myMarkdownToHtml(this.task.getRulesMessage(this.verb)) + "</p>";
 
     // ERROR STAMP
+    this.showStamp('error');
+
+    console.log({
+      userInput,
+      rightAnswer,
+    });
+  }
+
+  showStamp(stampType: "error" | "success") {
     const stamp = document.createElement("span");
-    stamp.className = "mistake-stamp";
-    stamp.innerText = "誤";
+    stamp.style.top = "48px";
+    if (stampType === 'error') {
+      stamp.style.right = "48px";
+      stamp.innerText = "誤";
+    } else {
+      stamp.style.left = "48px";
+      stamp.innerText = "正";
+    }
+    stamp.className = stampType + " stamp";
     stamp.style.transform = `rotate(${
       (1 - Math.random() * 2) * 30
     }deg) translate(${(1 - Math.random() * 2) * 24}px, ${
@@ -111,11 +126,6 @@ class VerbLearningTool {
       () => document.body.removeChild(stamp),
     );
     document.body.appendChild(stamp);
-
-    console.log({
-      userInput,
-      rightAnswer,
-    });
   }
 
   clearRule() {

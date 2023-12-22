@@ -140,11 +140,11 @@ const IchidanPastPoliteNegative: VerbTask = {
 };
 
 export const VERB_TASKS: ReadonlyArray<VerbTask> = [
-  IchidanNonPastPlainNegative,
-  IchidanNonPastPoliteAffirmative,
-  IchidanNonPastPoliteNegative,
+//  IchidanNonPastPlainNegative,
+//  IchidanNonPastPoliteAffirmative,
+//  IchidanNonPastPoliteNegative,
   IchidanPastPlainAaffirmative,
-  IchidanPastPlainNegative,
-  IchidanPastPoliteAffirmative,
-  IchidanPastPoliteNegative,
+//  IchidanPastPlainNegative,
+//  IchidanPastPoliteAffirmative,
+//  IchidanPastPoliteNegative,
 ];
